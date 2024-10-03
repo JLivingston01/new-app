@@ -65,6 +65,8 @@ def create_project():
             store_df.to_sql('projects',index=False,if_exists='append',con=conn)
             conn.close()
             engine.dispose()
+
+            return redirect(url_for('index'))
         except exc.IntegrityError:
             return render_template('create_project.html',result='The app name probably exists. Try another name.')
 
