@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ username }}</h2>
+
+{{ projects|safe }}
+{% endblock %}
+

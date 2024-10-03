@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Project Page{% endblock %}
+
+{% block content %}
+
+<h1>Project {{ name }} ({{ pid }})</h1>
+
+<p> {{ text }} </p>
+
+
+<form method="POST" action="{{ url_for('delete_project', pid=pid ) }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}
+
