@@ -13,6 +13,8 @@ from sqlalchemy import (
     exc
 )
 
+import datetime as dt
+
 import os
 from dotenv import load_dotenv
 import uuid
@@ -81,6 +83,9 @@ def project(pid):
     projects=pd.read_sql(
         f"select * from projects where pid = '{pid}'",
         con=conn)
+    tasks=pd.read_sql(
+        f"select * from tasks where pid = '{pid}'",
+        con=conn)
     conn.close()
     engine.dispose()
 
@@ -92,8 +97,40 @@ def project(pid):
     name = projects['name'].values[0]
     text = projects['text'].values[0]
 
+    html_tbl = tasks[['task_name','text','start_dt','end_dt']].to_html(escape=False,classes='table table-striped', index=False)
+
     return render_template('project.html',pid=pid,
-                           name=name,text=text)
+                           name=name,text=text,tasks_tbl=html_tbl)
+
+
+@server.route('/create_task/<pid>',methods=['POST'])
+def create_task(pid):
+
+    name = request.form['task_name']
+    text = request.form['task_text']
+    start = request.form['dt1']
+    close = request.form['dt2']
+
+    load_data = pd.DataFrame(
+        {
+            'pid':[pid],
+            'task_name':[name],
+            'text':[text],
+            'start_dt':[start],
+            'end_dt':[close]
+        }
+    )
+
+    try:  
+        engine = create_engine(url = CONN_STR)
+        conn = engine.connect()
+        load_data.to_sql('tasks',index=False,if_exists='append',con=conn)
+        conn.close()
+        engine.dispose()
+
+        return redirect(url_for('project',pid=pid))
+    except exc.IntegrityError:
+        return render_template(url_for('project',pid=pid),result='The app name probably exists. Try another name.')
 
 
 @server.route('/delete_project/<pid>', methods=['POST'])
@@ -104,7 +141,9 @@ def delete_project(pid):
     
     engine = create_engine(url = CONN_STR)
     conn = engine.connect()
-    conn.execute(text(query.format(pid=pid)))
+    conn.execute(text(query.format(pid=pid,tbl='projects')))
+    conn.commit()
+    conn.execute(text(query.format(pid=pid,tbl='tasks')))
     conn.commit()
     conn.close()
     engine.dispose()

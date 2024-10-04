@@ -1,1 +1,1 @@
-DELETE FROM projects WHERE pid = '{pid}';
+DELETE FROM {tbl} WHERE pid = '{pid}';

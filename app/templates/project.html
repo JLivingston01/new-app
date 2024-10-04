@@ -6,8 +6,22 @@
 
 <h1>Project {{ name }} ({{ pid }})</h1>
 
+<label>Description</label>
 <p> {{ text }} </p>
 
+<div> {{ tasks_tbl|safe  }} </div>
+
+<form method="POST" action="{{ url_for('create_task', pid=pid ) }}" >
+    <label>Task Name</label>
+    <input type="text" name="task_name" required>
+    <label>Task Description</label>
+    <input type="text" name="task_text" required>
+    <label>Kickoff</label>
+    <input type="date" name="dt1" required>
+    <label>Expected Close</label>
+    <input type="date" name="dt2" required>
+    <button type="submit">Create a task</button>
+</form>
 
 <form method="POST" action="{{ url_for('delete_project', pid=pid ) }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
     <button type="submit">Delete</button>
