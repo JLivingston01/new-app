@@ -1,8 +1,9 @@
 CREATE TABLE tasks (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   pid TEXT NOT NULL,
+  tid TEXT NOT NULL UNIQUE,
   task_name TEXT NOT NULL,
   text TEXT NOT NULL,
   start_dt DATE NOT NULL,
-  end_dt DATE NOT NULL
+  end_dt DATE
 );

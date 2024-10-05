@@ -1,1 +1,1 @@
-DELETE FROM {tbl} WHERE pid = '{pid}';
+DELETE FROM {tbl} WHERE {id_col} = '{id_val}';

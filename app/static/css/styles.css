@@ -1,0 +1,173 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f06, #4a90e2);
+  color: #fff;
+}
+
+header {
+  width: 100%;
+  padding: 20px;
+  background-color: #333;
+}
+
+nav {
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 10px;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #f06;
+}
+
+/* Main Content Styling */
+main.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 80%;
+  margin: 20px auto;
+}
+
+h2.page-title {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #ffe600;
+  text-shadow: 2px 2px #000;
+}
+
+label.section-label {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+/* Table Styling */
+.data-table {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.2em;
+}
+
+.data-table th, .data-table td {
+  padding: 15px;
+  border: 1px solid #fff;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #ffe600;
+  font-weight: bold;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.data-table td {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 10px;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  nav ul {
+    padding: 0;
+  }
+
+  main.content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h2.page-title {
+    font-size: 2.5em;
+    text-align: center;
+  }
+
+  label.section-label {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 8px 16px;
+  }
+
+  .data-table table {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul li {
+    margin: 5px 0;
+  }
+
+  main.content {
+    width: 95%;
+    padding: 10px;
+  }
+
+  h2.page-title {
+    font-size: 2em;
+  }
+
+  label.section-label {
+    font-size: 1em;
+    padding: 6px 12px;
+  }
+
+  .data-table table {
+    font-size: 0.9em;
+  }
+
+  .data-table th, .data-table td {
+    padding: 10px;
+  }
+}

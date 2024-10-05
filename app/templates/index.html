@@ -3,8 +3,20 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<h2>Welcome, {{ username }}</h2>
 
-{{ projects|safe }}
+<h2 class="page-title">Welcome, {{ username }}</h2>
+
+<label class="section-label">Open Projects</label>
+
+<div class="data-table">
+    {{ projects|safe }}
+</div>
+
+<label class="section-label">My Team</label>
+
+<div class="data-table">
+    {{ team_tbl|safe }}
+</div>
+
 {% endblock %}
 

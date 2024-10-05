@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}What's this gonna do?{% endblock %}</title>
+    <title>{% block title %}Cruddy{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
@@ -11,10 +12,11 @@
             <ul>
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('create_project') }}">Create Project</a></li>
+                <li><a href="{{ url_for('create_member') }}">Create Member</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="content" class="content">
         {% block content %}
         {% endblock %}
     </main>
